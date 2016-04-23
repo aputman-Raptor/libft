@@ -15,9 +15,7 @@
 void	*ft_memalloc(size_t size)
 {
 	void	*zone;
-	size_t	i;
-
-	i = -1;
+	
 	if (!(zone = (void *)malloc(sizeof(void) * size)))
 		return (NULL);
 	zone = ft_memset(zone, 0, size);
