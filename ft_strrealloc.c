@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/02 16:02:48 by aputman           #+#    #+#             */
-/*   Updated: 2015/12/18 15:41:23 by aputman          ###   ########.fr       */
+/*   Created: 2016/06/07 14:56:27 by aputman           #+#    #+#             */
+/*   Updated: 2017/01/03 13:39:28 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_putnbr(int nb)
+char		*ft_strrealloc(char *str, int size)
 {
-	if (nb == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return ;
-	}
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb *= -1;
-	}
-	if (nb >= 10)
-		ft_putnbr(nb / 10);
-	ft_putchar((nb % 10) + '0');
+	char	*tmp;
+
+	tmp = ft_strdup(str);
+	free(str);
+	if (!(str = ft_strnew(ft_strlen(tmp) + size + 1)))
+		return (NULL);
+	ft_strcpy(str, tmp);
+	free(tmp);
+	return (str);
 }

@@ -6,19 +6,17 @@
 #    By: aputman <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/04 14:40:25 by aputman           #+#    #+#              #
-#    Updated: 2016/04/09 16:25:10 by aputman          ###   ########.fr        #
+#    Updated: 2017/01/03 17:25:26 by aputman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=libft.a
+NAME = libft.a
 
-CC=gcc
+CC = gcc
 
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
-RM=rm -f
-
-SRC= ft_atoi.c\
+SRC = ft_atoi.c\
 	 ft_bzero.c\
 	 ft_factorial.c\
 	 ft_find_next_prime.c\
@@ -81,23 +79,32 @@ SRC= ft_atoi.c\
 	 ft_strtrim.c\
 	 ft_tolower.c\
 	 ft_toupper.c\
-	 get_next_line.c
+	 get_next_line.c\
+	 ft_strrealloc.c
 
-OBJ=$(SRC:.c=.o)
+OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
-$(NAME): libft.h
-	$(CC) $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+OBJDIR = ./obj/
 
-all: $(NAME)
+all: obj $(NAME)
+
+obj:
+	@mkdir $(OBJDIR)
+
+$(OBJDIR)%.o:%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(NAME): libft.h $(OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "Library successfully builded"
 
 clean:
-	$(RM) $(OBJ)
+	@rm -rf $(OBJDIR)
 
-fclean:
-	$(RM) $(OBJ) libft.a
+fclean: clean
+	@rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean
+.PHONY: all clean fclean re

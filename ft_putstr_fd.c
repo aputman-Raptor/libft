@@ -6,7 +6,7 @@
 /*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 16:11:55 by aputman           #+#    #+#             */
-/*   Updated: 2015/12/17 21:54:37 by aputman          ###   ########.fr       */
+/*   Updated: 2016/06/16 08:54:04 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,5 @@ void	ft_putstr_fd(char const *s, int fd)
 	size_t	i;
 
 	i = -1;
-	while (s[++i])
-		write(fd, s + i, 1);
+	write(fd, &s[i], ft_strlen(s));
 }

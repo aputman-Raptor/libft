@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 14:16:08 by aputman           #+#    #+#             */
-/*   Updated: 2015/12/17 21:55:43 by aputman          ###   ########.fr       */
+/*   Created: 2015/12/02 14:53:31 by aputman           #+#    #+#             */
+/*   Updated: 2015/12/11 19:14:35 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *src)
+void	*ft_memalloc(size_t size)
 {
-	int		i;
-	char	*dest;
+	void	*zone;
+	size_t	i;
 
-	i = 0;
-	dest = NULL;
-	if (!(dest = malloc(sizeof(char) * (ft_strlen(src) + 1))))
+	i = -1;
+	if (!(zone = (void *)malloc(sizeof(void) * size)))
 		return (NULL);
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	zone = ft_memset(zone, 0, size);
+	return (zone);
 }

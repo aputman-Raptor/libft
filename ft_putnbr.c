@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aputman <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/19 14:21:58 by aputman           #+#    #+#             */
-/*   Updated: 2015/12/19 14:30:24 by aputman          ###   ########.fr       */
+/*   Created: 2015/12/02 16:02:48 by aputman           #+#    #+#             */
+/*   Updated: 2017/01/03 13:17:52 by aputman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void		ft_putnbr(int nb)
 {
-	if (alst != NULL && new != NULL)
+	if (nb == -2147483648)
+		ft_putstr("-2147483648");
+	else
 	{
-		new->next = *alst;
-		*alst = new;
+		if (nb < 0)
+		{
+			ft_putchar('-');
+			nb *= -1;
+		}
+		if (nb >= 10)
+			ft_putnbr(nb / 10);
+		ft_putchar((nb % 10) + '0');
 	}
 }
